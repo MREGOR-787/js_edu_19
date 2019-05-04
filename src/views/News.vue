@@ -26,7 +26,9 @@ export default {
   name: "News",
   data: () => ({}),
   computed: {
-    ...mapState(["news"])
+    ...mapState({
+      news: state => state.news.news
+    })
   },
   methods: {
     ...mapActions(["addNews"]),
