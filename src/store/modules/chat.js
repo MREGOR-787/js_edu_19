@@ -25,13 +25,11 @@ export default {
       }
     ]
   },
-
   getters: {
     chatMessages: state => id => {
       return state.messages.filter(message => message.chat == id);
     }
   },
-
   actions: {
     sendMessage({ state, commit }, message) {}
   },
