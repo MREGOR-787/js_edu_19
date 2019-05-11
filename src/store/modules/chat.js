@@ -1,3 +1,4 @@
+import api from "@/api";
 export default {
   state: {
     chats: [
@@ -31,6 +32,9 @@ export default {
     }
   },
   actions: {
+    getMessages({ state, commit }) {
+      
+    },
     sendMessage({ state, commit }, message) {}
   },
   mutations: {

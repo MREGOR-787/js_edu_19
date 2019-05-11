@@ -1,18 +1,21 @@
+import api from "@/api";
 export default {
   state: {
-    news: [
-      {
-        title: "Хранилище",
-        text: "Ура, сложная задача",
-        img: ""
-      }
-    ]
+    news: []
   },
   actions: {
     addNews({ state, commit }, article) {
-      let newNews = state.news.concat();
-      newNews.push(article);
-      commit("setNews", newNews);
+      api.axios.put(api.urls["news"], article).then(res => {
+        article = res.data;
+        let newNews = state.news.concat();
+        newNews.push(article);
+        commit("setNews", newNews);
+      });
+    },
+    getNews({ state, commit }) {
+      api.axios.get(api.urls["news"]).then(res => {
+        commit("setNews", res.data);
+      });
     }
   },
   mutations: {
