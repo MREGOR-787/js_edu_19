@@ -2,7 +2,9 @@ import axios from "axios";
 
 export default {
   urls: {
-    news: "/news"
+    news: "/news",
+    chat: "/chat",
+    store: "/store"
   },
   axios: axios
 };

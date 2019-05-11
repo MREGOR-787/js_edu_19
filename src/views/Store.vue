@@ -1,6 +1,7 @@
 <template>
   <div>
     <h2>Магазин</h2>
+    <v-btn flat @click="getGoods">Обновить</v-btn>
     <v-card v-for="(item, key) in goods" :key="key" style="margin:20px">
       <v-img :src="item.img"></v-img>
 
@@ -32,7 +33,7 @@ export default {
     })
   },
   methods: {
-    ...mapActions(["addGoods"]),
+    ...mapActions(["addGoods", "getGoods"]),
     addProduct() {
       let product = {
         title: "Товар",

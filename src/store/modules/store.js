@@ -1,19 +1,21 @@
+import api from "@/api";
 export default {
   state: {
-    goods: [
-      {
-        title: "Яблоки",
-        text: "Вкусные яблоки",
-        price: 300,
-        img: ""
-      }
-    ]
+    goods: []
   },
   actions: {
     addGoods({ state, commit }, product) {
-      let newGoods = state.goods.concat();
-      newGoods.push(product);
-      commit("setGoods", newGoods);
+      api.axios.put(api.urls["store"], product).then(res => {
+        product = res.data;
+        let newGoods = state.goods.concat();
+        newGoods.push(product);
+        commit("setGoods", newGoods);
+      });
+    },
+    getGoods({ state, commit }) {
+      api.axios.get(api.urls["store"]).then(res => {
+        commit("setGoods", res.data);
+      });
     }
   },
   mutations: {

@@ -1,9 +1,7 @@
 <template>
   <div>
-    <h2>
-      Новости
-      <button @click="getNews">Обновить</button>
-    </h2>
+    <h2>Новости</h2>
+    <v-btn flat @click="getNews">Обновить</v-btn>
     <v-card v-for="(item, key) in news" :key="key" style="margin:20px">
       <v-img :src="item.img"></v-img>
 

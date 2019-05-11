@@ -1,41 +1,22 @@
 import api from "@/api";
 export default {
   state: {
-    chats: [
-      {
-        id: 0,
-        title: "Чат с Егором"
-      },
-      {
-        id: 1,
-        title: "Чат с Оксаной"
-      }
-    ],
-    messages: [
-      {
-        id: 0,
-        from: 1,
-        chat: 0,
-        text: "Привет, Егор"
-      },
-      {
-        id: 1,
-        from: 2,
-        chat: 0,
-        text: "Здравствуйте, ВА"
-      }
-    ]
-  },
-  getters: {
-    chatMessages: state => id => {
-      return state.messages.filter(message => message.chat == id);
-    }
+    messages: []
   },
   actions: {
-    getMessages({ state, commit }) {
-      
+    addMessages({ state, commit }, message) {
+      api.axios.put(api.urls["chat"], message).then(res => {
+        message = res.data;
+        let newMessages = state.messages.concat();
+        newMessages.push(message);
+        commit("setMessages", newMessages);
+      });
     },
-    sendMessage({ state, commit }, message) {}
+    getMessages({ state, commit }) {
+      api.axios.get(api.urls["chat"]).then(res => {
+        commit("setMessages", res.data);
+      });
+    }
   },
   mutations: {
     setMessages(state, messages) {
